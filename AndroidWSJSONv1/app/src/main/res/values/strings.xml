@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidWSJSONv1</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main_postretrofit">MainPOSTRetrofit</string>
+    <string name="title_activity_main_post_jsonretrofit">MainPostJSONRetrofit</string>
+
+
+</resources>
