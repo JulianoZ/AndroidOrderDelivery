@@ -1,2 +1,0 @@
-# AndroidOrderDelivery
-Android Order Delivery
