@@ -55,7 +55,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         tv2.setText("R$ " + Double.toString(prod.getPrice()));
 
         ImageView img = (ImageView) view.findViewById(R.id.img);
-        img.setImageBitmap(Controller.ProductsBitmapList.get(prod.getIdProduct()));
+        img.setImageBitmap(prod.getImg());
         //Picasso.with(context)
         //        .load(url + prod.getPicture1())//.resize(100, 100)
         //        .into(img);

@@ -88,7 +88,7 @@ public class OrderedProductAdapter extends BaseAdapter {
         tv4.setText("x" + Integer.toString(entry.getValue()));
 
         ImageView img = (ImageView) view.findViewById(R.id.img);
-        img.setImageBitmap(Controller.ProductsBitmapList.get(prod.getIdProduct()));
+        img.setImageBitmap(prod.getImg());
 
         final Product p = prod;
 
