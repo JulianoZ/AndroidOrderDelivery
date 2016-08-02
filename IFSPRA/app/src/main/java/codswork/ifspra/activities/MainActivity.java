@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        for(Product p:Controller.ProductsList) {
-            Controller.LoadImage(MainActivity.this, Controller.getTarget(p), Controller.EndPointWsRest + "/Images/Products/" + p.getPicture1());
-        }
     }
 
     @Override

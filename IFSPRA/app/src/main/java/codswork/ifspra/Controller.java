@@ -3,12 +3,15 @@ package codswork.ifspra;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Vibrator;
+import android.util.Log;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,6 +24,24 @@ import codswork.ifspra.pojo.Product;
 public class Controller {
 
     //public static boolean progress = false;
+
+    private final static Target target = new Target(){
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            bitmapHelper = bitmap;
+            Log.d("Load Image", "Loaded: " + from.toString());
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+            Log.d("Load Image", "Failed");
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+            Log.d("Load Image", "Prepare");
+        }
+    };
 
     public static boolean isFastBuyChecked;// = false;
     public static boolean isFastRemChecked;// = false;
@@ -35,27 +56,26 @@ public class Controller {
 
     public static Ordered Carrinho = new Ordered(); //Forma temporaria de manusear o carrinho
 
-    public static Target getTarget(final Product p){
+    private static Bitmap bitmapHelper = null;
 
-        return new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                final Bitmap b = bitmap;
-                Controller.ProductsBitmapList.put(p.getIdProduct(), b);
-            }
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) { }
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) { }
-        };
-
-    }
-
-    public static void LoadImage(Context c, Target t, String url){
-
+    /*public static Bitmap getBitmap(final Product p, final Context c, String url){
+        Log.d("Load Image", "Loading from: " + url);
         Picasso.with(c)
                 .load(url)//.resize(150, 150)
-                .into(t);
+                .into(target);
+        return bitmapHelper;
+    }*/
+
+    public static Bitmap getBitmap(final Product p, final Context c, String url){
+        Log.d("Load Image", "Loading from: " + url);
+        Bitmap b;
+        try{
+            b = Picasso.with(c).load(url).get();
+        }catch(IOException e){
+            Log.d("Load Image", "Failed load from: " + url);
+            b=null;
+        }
+        return b;
     }
 
 

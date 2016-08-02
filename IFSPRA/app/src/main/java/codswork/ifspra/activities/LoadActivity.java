@@ -2,12 +2,16 @@ package codswork.ifspra.activities;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -54,14 +58,28 @@ public class LoadActivity extends AppCompatActivity {
         productApi.getWSRestProduct(new Callback<List<Product>>() {
             @Override
             public void success(List<Product> products, Response response) {
-
+                ((TextView)findViewById(R.id.tv_loading)).setText("Conferindo lista de produtos");
                 Controller.ProductsList = (ArrayList) products;
                 for (Product p: Controller.ProductsList) {
-
                     if(p.getDAO().getProduct(LoadActivity.this, p.getIdProduct())==null) {
                         p.getDAO().createProduct(LoadActivity.this);
                     }
+                    //p.setImg(Controller.getBitmap(p, LoadActivity.this, Controller.EndPointWsRest + "/Images/Products/" + p.getPicture1()));
                 }
+
+                HandlerThread handlerThread = new HandlerThread("Loading Thread");
+                handlerThread.start();
+
+                Handler handler = new Handler(handlerThread.getLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (Product p: Controller.ProductsList) {
+                            p.setImg(Controller.getBitmap(p, LoadActivity.this,  Controller.EndPointWsRest + "/Images/Products/" + p.getPicture1()));
+                        }
+                    }
+                });
+
                 //loading.dismiss();
                 if(logged_in) {
                     Intent i = new Intent(LoadActivity.this, MainActivity.class);
