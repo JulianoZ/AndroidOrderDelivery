@@ -1,15 +1,10 @@
 package codswork.ifspra.pojo;
 
-import android.graphics.Bitmap;
-
 import java.io.Serializable;
-
-import codswork.ifspra.dao.DAOProduct;
 
 /**
  * Created by Juliano on 31/05/2016.
  */
-
 public class Product implements Serializable {
 
 
@@ -24,19 +19,6 @@ public class Product implements Serializable {
     public String Picture1;
     public String Picture2;
     public int SubCategory_idSubCategory;
-    private Bitmap img;
-    public boolean product_purchased = false; //Set if the product already was ordered. Default: false
-
-
-    public boolean isProduct_purchased() {
-        return product_purchased;
-    }
-
-    public void setProduct_purchased(boolean product_purchased) {
-        this.product_purchased = product_purchased;
-    }
-
-
     //public Date DateTimeRegister;
 
 
@@ -86,14 +68,6 @@ public class Product implements Serializable {
     public void setSubCategory_idSubCategory(int subCategory_idSubCategory) {
         SubCategory_idSubCategory = subCategory_idSubCategory;
     }
-    public Bitmap getImg() {
-        return img;
-    }
-
-    public void setImg(Bitmap img) {
-        this.img = img;
-    }
-
 
     //public void setDateTimeRegister(Date dateTimeRegister) {     DateTimeRegister = dateTimeRegister;    }
 
@@ -142,10 +116,6 @@ public class Product implements Serializable {
     }
 
     //public Date getDateTimeRegister() {        return DateTimeRegister;    }
-
-    public DAOProduct getDAO(){
-        return new DAOProduct(this);
-    }
 
 
 }

@@ -21,8 +21,8 @@ public class DetailActivity extends AppCompatActivity {
 
         int id = (int)this.getIntent().getExtras().get("id");
 
-        //Database db = Database.getInstance(getApplicationContext());
-        DAOProduct p =  DAOProduct.getProduct(DetailActivity.this, id);
+        Database db = Database.getInstance(getApplicationContext());
+        DAOProduct p =  db.getProduct(id);
 
         ImageView img = (ImageView)findViewById(R.id.img);
         img.setImageBitmap(Controller.ProductsBitmapList.get(p.getIdProduct()));
