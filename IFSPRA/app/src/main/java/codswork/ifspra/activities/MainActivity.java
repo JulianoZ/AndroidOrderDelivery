@@ -15,7 +15,6 @@ import java.util.Calendar;
 
 import codswork.ifspra.Controller;
 import codswork.ifspra.R;
-import codswork.ifspra.pojo.Product;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         //    return true;
         if (id == R.id.check_buy){
             if(item.isChecked()){
-                Controller.isFastBuyChecked = false;
+
                 item.setChecked(false);
             }else{
                 Controller.isFastBuyChecked = true;

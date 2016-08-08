@@ -101,16 +101,29 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="Limpar Carrinho"
+            android:text="Limpar"
             android:id="@+id/btn_clear"
             android:layout_weight="1"
             android:background="@drawable/background_selector_green"
             android:textColor="#fff" />
 
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="Finalizar Pedido"
+            android:text="Fazer Pedido"
+            android:id="@+id/btn_makeOrder"
+            android:layout_weight="1"
+            android:background="@drawable/background_make_order_selected"
+            android:textColor="#fff" />
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="Fechar Conta"
             android:id="@+id/btn_end"
             android:layout_weight="1"
             android:background="@drawable/background_selector_accent"

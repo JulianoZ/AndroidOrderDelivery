@@ -1,15 +1,11 @@
 package codswork.ifspra.pojo;
 
-import android.content.Context;
-import android.view.MenuItem;
-import android.view.View;
+import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 import codswork.ifspra.Controller;
-import codswork.ifspra.R;
 
 /**
  * Created by Felipe on 16/07/2016.
@@ -68,17 +64,78 @@ public class Ordered {
     }
 
     public void add(Product p, int quantity){//, View v){
-        if(!Products.containsKey(p)) {
+        if(!Products.containsKey(p)) { //If there isn´t a product in HashMap add
             Products.put(p, quantity);
-        }else{
+            Log.d(" Produto novo no cart ", Integer.toString(p.idProduct) + Boolean.toString(p.product_purchased));
+        }else{ //if there is a product in HashMap:
             int q = Products.get(p);
+
+            /*----------Original Code
             Products.remove(p);
             Products.put(p, quantity + q);
+            */
+
+            //----------extended Code
+            if (p.product_purchased) {//Verify if this product already was ordered. Case positive
+
+
+                   //Create new object to stored two register with same data. The difference is in purchased or not
+                    Product objP = new Product();
+                    objP.idProduct = p.idProduct;
+                    objP.Name = p.Name;
+                    objP.setImg(p.getImg());
+                    objP.product_purchased = false;
+                    objP.Price = p.Price;
+
+                    Products.put(objP, quantity); //Add new hashMap Tuple with product_puchased variable set false
+
+                Log.d(" Produto comprado ", Integer.toString(p.idProduct) + Boolean.toString(p.product_purchased) + Controller.RandonGenerate());
+
+            }else{ //Remove and count the total quantity of the product specific
+                Products.remove(p);
+                Products.put(p, quantity + q);
+                Log.d(" Produto n comp ejá Add", Integer.toString(p.idProduct) + Boolean.toString(p.product_purchased));
+            }
+
+
+
+            int r=0;
+            for (Product prod:Controller.Carrinho.getProducts().keySet()) {
+                Log.d(" HashMap id", Integer.toString(prod.idProduct) + Boolean.toString(prod.product_purchased) + Integer.toString(r) + prod.getImg());
+                r++;
+            }
+
+
+
+
+
+
         }
         value += p.getPrice() * quantity;
         this.quantity += quantity;
         //((MenuItem)v.findViewById(R.id.total_value)).setTitle("R$ " + value);
     }
+
+
+
+/*
+    public void add(Product p, int quantity){//, View v){
+        if(!Products.containsKey(p)) {
+            Products.put(p, quantity);
+        }else{
+            int q = Products.get(p);
+                Products.remove(p);
+                Products.put(p, quantity + q);
+        }
+        value += p.getPrice() * quantity;
+        this.quantity += quantity;
+        //((MenuItem)v.findViewById(R.id.total_value)).setTitle("R$ " + value);
+    }
+*/
+
+
+
+
     public void subtract(Product p, int quantity){//, View v){
         if(Products.containsKey(p)) {
             int q = Products.get(p);

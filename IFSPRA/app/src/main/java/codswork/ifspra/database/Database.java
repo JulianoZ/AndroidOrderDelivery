@@ -4,13 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
-import android.util.Log;
-
-import java.util.ArrayList;
-
-import codswork.ifspra.dao.DAOProduct;
-import codswork.ifspra.pojo.Product;
 
 /**
  * Created by Felipe on 12/07/2016.
@@ -37,7 +30,8 @@ public class Database extends SQLiteOpenHelper{
                            "weight FLOAT(10)," +
                            "picture VARCHAR(60)," +
                            "picture2 VARCHAR(60)," +
-                           "subcat_id INT(5)" +
+                           "subcat_id INT(5)," +
+                           "product_purchased INT(5)" + //1- already purchased 0-> No purchased
                        ");";
 
         db.execSQL(query);

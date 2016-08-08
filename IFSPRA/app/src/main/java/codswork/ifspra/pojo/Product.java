@@ -25,6 +25,18 @@ public class Product implements Serializable {
     public String Picture2;
     public int SubCategory_idSubCategory;
     private Bitmap img;
+    public boolean product_purchased = false; //Set if the product already was ordered. Default: false
+
+
+    public boolean isProduct_purchased() {
+        return product_purchased;
+    }
+
+    public void setProduct_purchased(boolean product_purchased) {
+        this.product_purchased = product_purchased;
+    }
+
+
     //public Date DateTimeRegister;
 
 

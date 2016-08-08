@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -19,14 +16,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import codswork.ifspra.CartInterface;
 import codswork.ifspra.Controller;
 import codswork.ifspra.R;
-import codswork.ifspra.activities.CartFragment;
-import codswork.ifspra.activities.DetailActivity;
 import codswork.ifspra.pojo.Product;
 
 /**
@@ -82,7 +76,7 @@ public class OrderedProductAdapter extends BaseAdapter {
         tv2.setText("R$ " + Double.toString(prod.getPrice()));
 
         TextView tv3 = (TextView)view.findViewById(R.id.sub_price);
-        tv3.setText("Sub: R$ " + Double.toString(entry.getValue() * prod.getPrice()));
+        tv3.setText("Sub: R$ " + Double.toString(entry.getValue() * prod.getPrice()) + "\n Comprado: " + prod.product_purchased);
 
         TextView tv4 = (TextView)view.findViewById(R.id.qtd);
         tv4.setText("x" + Integer.toString(entry.getValue()));
@@ -109,6 +103,17 @@ public class OrderedProductAdapter extends BaseAdapter {
 
         return view;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     private AlertDialog getDialog(final Product p, final View v){
         LayoutInflater inflater = (LayoutInflater)
@@ -145,4 +150,21 @@ public class OrderedProductAdapter extends BaseAdapter {
                         })
                 .create();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+

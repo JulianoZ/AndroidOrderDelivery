@@ -3,7 +3,6 @@ package codswork.ifspra;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Vibrator;
 import android.util.Log;
@@ -14,6 +13,7 @@ import com.squareup.picasso.Target;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import codswork.ifspra.pojo.Ordered;
 import codswork.ifspra.pojo.Product;
@@ -24,6 +24,9 @@ import codswork.ifspra.pojo.Product;
 public class Controller {
 
     //public static boolean progress = false;
+
+
+
 
     private final static Target target = new Target(){
         @Override
@@ -43,8 +46,31 @@ public class Controller {
         }
     };
 
+
+
+
+
+
     public static boolean isFastBuyChecked;// = false;
     public static boolean isFastRemChecked;// = false;
+    public static int ClientTable = 0; //Set the number of client table
+    public static int primaryKey = 0; //Key of order of Client
+
+
+
+    public static void SetPrimaryKey(){ //Used in CartFragment class inside the method makeOrderSetTable
+        Random rnd = new Random();
+        int num = rnd.nextInt(10000);
+        primaryKey = num;
+    }
+
+
+    public static int RandonGenerate(){ //Used in Ordered
+        Random rnd = new Random();
+        int num = rnd.nextInt(10000);
+        return num;
+    }
+
 
     public static int active_id = -2;
 

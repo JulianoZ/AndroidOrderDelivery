@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +44,7 @@ public class CartFragment extends Fragment implements CartInterface {
 
     View myView;
 
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         //if(Controller.isFastBuyChecked)
@@ -55,8 +58,8 @@ public class CartFragment extends Fragment implements CartInterface {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView  = inflater.inflate(R.layout.cart_layout, container, false);
-       // setHasOptionsMenu(true);
+        myView = inflater.inflate(R.layout.cart_layout, container, false);
+        // setHasOptionsMenu(true);
         return myView;
     }
 
@@ -67,7 +70,7 @@ public class CartFragment extends Fragment implements CartInterface {
 
         updateCart();
 
-        ((Button)view.findViewById(R.id.btn_clear)).setOnClickListener(new View.OnClickListener() {
+        ((Button) view.findViewById(R.id.btn_clear)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Controller.Carrinho.clear();
@@ -76,6 +79,7 @@ public class CartFragment extends Fragment implements CartInterface {
             }
         });
 
+        /*
         ((Button)view.findViewById(R.id.btn_end)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,8 +104,162 @@ public class CartFragment extends Fragment implements CartInterface {
                         .create().show();
             }
         });
+*/
+
+
+        ((Button) view.findViewById(R.id.btn_end)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Controller.ClientTable == 0) { //If the number of client table isn´t set call the method to set.
+                    CheckoutTable(v).show();
+                }else{
+                    CheckoutDirect(v).show();
+                }
+            }
+        });
+
+
+        ((Button) view.findViewById(R.id.btn_makeOrder)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Controller.ClientTable == 0) { //If the number of client table isn´t set call the method to set.
+                    makeOrderSetTable(v).show(); //keep the products in the cart
+                } else {
+                    makeOrderDirect(v).show();
+                }
+            }
+        });
+
 
     }
+
+
+    private AlertDialog CheckoutTable(final View v) {
+        LayoutInflater inflater = (LayoutInflater)
+                v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final NumberPicker npView = new NumberPicker(v.getContext());
+        npView.setMinValue(1);
+        npView.setMaxValue(20);
+        return new AlertDialog.Builder(v.getContext())
+                .setTitle("Selecione a sua mesa no bar")
+                .setView(npView)
+                .setPositiveButton("Finalizar pedido",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                boolean checkout = true; //checkout the odered
+                                Controller.vibrateShort(getView().getContext());
+                                send_json(npView.getValue(), checkout); //Get the client table
+                                Controller.Carrinho.clear();
+                                updateCart();
+                                Controller.vibrateShort(getView().getContext());
+                            }
+                        })
+                .setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        })
+                .create();
+    }
+
+
+
+
+
+    private AlertDialog CheckoutDirect(final View v) {
+        LayoutInflater inflater = (LayoutInflater)
+                v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        return new AlertDialog.Builder(v.getContext())
+                .setTitle("Deseja realizar esse pedido para a mesa:" + Controller.ClientTable + "?")
+                .setPositiveButton("Fazer pedido",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                boolean checkout = false; //no checkout the odered
+                                Controller.vibrateShort(getView().getContext());
+                                send_json(Controller.ClientTable, checkout); //Get the client table
+                                Controller.Carrinho.clear();
+                                updateCart();
+                                Controller.vibrateShort(getView().getContext());
+                                Toast.makeText(v.getContext(), "Pedido realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                .setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        })
+                .create();
+    }
+
+
+
+
+    private AlertDialog makeOrderSetTable(final View v) { //Accumulates the products in the customer order
+        LayoutInflater inflater = (LayoutInflater)
+                v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final NumberPicker npView = new NumberPicker(v.getContext());
+        npView.setMinValue(1);
+        npView.setMaxValue(20);
+        return new AlertDialog.Builder(v.getContext())
+                .setTitle("Selecione a sua mesa no bar")
+                .setView(npView)
+                .setPositiveButton("Fazer pedido",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                boolean checkout = false; //no checkout the odered
+                                Controller.vibrateShort(getView().getContext());
+                                Controller.ClientTable = npView.getValue();
+                                Controller.SetPrimaryKey(); //Genarate a primaryKey
+                                send_json(npView.getValue(), checkout); //Get the client table
+                                //Controller.Carrinho.clear();
+                                updateCart();
+                                Controller.vibrateShort(getView().getContext());
+                                Toast.makeText(v.getContext(), "Pedido realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                .setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        })
+                .create();
+    }
+
+
+    private AlertDialog makeOrderDirect(final View v) { //Accumulates the products in the customer order
+        LayoutInflater inflater = (LayoutInflater)
+                v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        return new AlertDialog.Builder(v.getContext())
+                .setTitle("Deseja realizar esse pedido para a mesa:" + Controller.ClientTable + "?")
+                .setPositiveButton("Fazer pedido",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                boolean checkout = false; //no checkout the odered
+                                Controller.vibrateShort(getView().getContext());
+                                send_json(Controller.ClientTable, checkout); //Get the client table
+                                updateCart();
+                                Controller.vibrateShort(getView().getContext());
+                                Toast.makeText(v.getContext(), "Pedido realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                .setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        })
+                .create();
+    }
+
+
+
+
+
+
+
+
 
     @Override
     public void updateCart() {
@@ -119,11 +277,11 @@ public class CartFragment extends Fragment implements CartInterface {
         tv.setText("R$ " + Controller.Carrinho.getValue());
     }
 
-    private void send_json(){
+    private void send_json(int ClientTable, boolean checkout){ //ClientTable: Get client table
         //RestAdapter adapter = new RestAdapter.Builder().setEndpoint("http://www.pldlivros.com.br/").build();
         RestAdapter adapter = new RestAdapter.Builder().setEndpoint("http://julianoblanco-001-site3.ctempurl.com/").build();
         RestInterface api = adapter.create(RestInterface.class);
-        api.insertUserJson(generate_json(),
+        api.insertUserJson(generate_json(ClientTable, checkout),
                 new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
@@ -147,7 +305,7 @@ public class CartFragment extends Fragment implements CartInterface {
         );
     }
 
-    private String generate_json(){
+    private String generate_json(int ClientTable, boolean checkout){
 
         try{
             JSONObject cart = new JSONObject();
@@ -163,17 +321,30 @@ public class CartFragment extends Fragment implements CartInterface {
             cart.put("ZipCodeDelivery", 1); //ZipCode Sample to delivery
             cart.put("PayamentId", 1); //1 - Money, 2 - check or 3 - credit card
             cart.put("ValueChange", 0); //Change Value;
+            cart.put("ClientTable", ClientTable); //Number of ClientTable
+            cart.put("Checkout", checkout); //Verify if the count is closed or not
+            cart.put("PrimaryKey", Controller.primaryKey);
+
 
 
             JSONArray products = new JSONArray();
             for (Product prod:Controller.Carrinho.getProducts().keySet()){
                 JSONObject p = new JSONObject();
-                p.put("quantity", Controller.Carrinho.getProducts().get(prod));
-                p.put("product_id", prod.getIdProduct());
-                products.put(p);
+
+                if (!prod.product_purchased) { //if the product hasn´t yet been purchased
+                    p.put("quantity", Controller.Carrinho.getProducts().get(prod));
+                    p.put("product_id", prod.getIdProduct());
+                    products.put(p);
+                }
+
+
+                prod.setProduct_purchased(true); //set that the product already was ordered
             }
 
             cart.put("products", products);
+
+
+
             return cart.toString();
         }catch (JSONException e) {
             e.printStackTrace();

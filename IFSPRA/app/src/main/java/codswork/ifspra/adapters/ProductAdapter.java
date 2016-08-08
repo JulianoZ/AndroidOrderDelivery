@@ -15,15 +15,12 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import codswork.ifspra.Controller;
 import codswork.ifspra.R;
 import codswork.ifspra.activities.DetailActivity;
 import codswork.ifspra.pojo.Product;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * Created by Juliano on 31/05/2016.
@@ -87,6 +84,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
         return view;
     }
+
+
 
     private AlertDialog getDialog(final Product p,final View v){
         LayoutInflater inflater = (LayoutInflater)
