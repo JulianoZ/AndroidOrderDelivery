@@ -143,12 +143,12 @@ public class CartFragment extends Fragment implements CartInterface {
         npView.setMinValue(1);
         npView.setMaxValue(20);
         return new AlertDialog.Builder(v.getContext())
-                .setTitle("Selecione a sua mesa no bar")
+                .setTitle("Selecione a sua mesa no restaurante")
                 .setView(npView)
                 .setPositiveButton("Finalizar pedido",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                boolean checkout = true; //checkout the odered
+                                boolean checkout = true; //no checkout the odered
                                 Controller.vibrateShort(getView().getContext());
                                 send_json(npView.getValue(), checkout); //Get the client table
                                 Controller.Carrinho.clear();
@@ -172,11 +172,11 @@ public class CartFragment extends Fragment implements CartInterface {
         LayoutInflater inflater = (LayoutInflater)
                 v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return new AlertDialog.Builder(v.getContext())
-                .setTitle("Deseja realizar esse pedido para a mesa:" + Controller.ClientTable + "?")
+                .setTitle("Deseja fechar a conta para a mesa:" + Controller.ClientTable + "?")
                 .setPositiveButton("Fazer pedido",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                boolean checkout = false; //no checkout the odered
+                                boolean checkout = true; //no checkout the odered
                                 Controller.vibrateShort(getView().getContext());
                                 send_json(Controller.ClientTable, checkout); //Get the client table
                                 Controller.Carrinho.clear();
@@ -322,18 +322,20 @@ public class CartFragment extends Fragment implements CartInterface {
             cart.put("PayamentId", 1); //1 - Money, 2 - check or 3 - credit card
             cart.put("ValueChange", 0); //Change Value;
             cart.put("ClientTable", ClientTable); //Number of ClientTable
-            cart.put("Checkout", checkout); //Verify if the count is closed or not
+            cart.put("Checkout", Boolean.toString(checkout)); //Verify if the count is closed or not
             cart.put("PrimaryKey", Controller.primaryKey);
 
-
+            Log.i("Checkout", Boolean.toString(checkout));
 
             JSONArray products = new JSONArray();
             for (Product prod:Controller.Carrinho.getProducts().keySet()){
                 JSONObject p = new JSONObject();
 
+                 boolean ProductDelivered = false;
                 if (!prod.product_purchased) { //if the product hasn´t yet been purchased
                     p.put("quantity", Controller.Carrinho.getProducts().get(prod));
                     p.put("product_id", prod.getIdProduct());
+                    p.put("ProductDelivered: ", ProductDelivered); //Used to staff know if the product was delivered to the table of client
                     products.put(p);
                 }
 

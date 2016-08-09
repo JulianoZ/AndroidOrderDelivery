@@ -75,8 +75,15 @@ public class OrderedProductAdapter extends BaseAdapter {
         TextView tv2 = (TextView) view.findViewById(R.id.price);
         tv2.setText("R$ " + Double.toString(prod.getPrice()));
 
+        //Controll to client: bought or not
+        String bought="NÃO";
+        if (prod.product_purchased){
+            bought = "SIM";
+        }
+
+
         TextView tv3 = (TextView)view.findViewById(R.id.sub_price);
-        tv3.setText("Sub: R$ " + Double.toString(entry.getValue() * prod.getPrice()) + "\n Comprado: " + prod.product_purchased);
+        tv3.setText("Sub: R$ " + Double.toString(entry.getValue() * prod.getPrice()) + "\nComprado: " + bought);
 
         TextView tv4 = (TextView)view.findViewById(R.id.qtd);
         tv4.setText("x" + Integer.toString(entry.getValue()));

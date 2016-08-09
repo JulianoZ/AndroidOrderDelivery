@@ -78,7 +78,6 @@ public class Ordered {
             //----------extended Code
             if (p.product_purchased) {//Verify if this product already was ordered. Case positive
 
-
                    //Create new object to stored two register with same data. The difference is in purchased or not
                     Product objP = new Product();
                     objP.idProduct = p.idProduct;

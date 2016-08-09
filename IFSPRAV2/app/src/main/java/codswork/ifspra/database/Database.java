@@ -30,8 +30,7 @@ public class Database extends SQLiteOpenHelper{
                            "weight FLOAT(10)," +
                            "picture VARCHAR(60)," +
                            "picture2 VARCHAR(60)," +
-                           "subcat_id INT(5)," +
-                           "product_purchased INT(5)" + //1- already purchased 0-> No purchased
+                           "subcat_id INT(5)" +
                        ");";
 
         db.execSQL(query);

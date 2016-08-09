@@ -60,7 +60,7 @@ public class Controller {
 
     public static void SetPrimaryKey(){ //Used in CartFragment class inside the method makeOrderSetTable
         Random rnd = new Random();
-        int num = rnd.nextInt(10000);
+        int num = rnd.nextInt(100000);
         primaryKey = num;
     }
 
