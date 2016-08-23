@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Felipe on 12/07/2016.
@@ -20,7 +21,7 @@ public class Database extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         String query = "CREATE TABLE IF NOT EXISTS product(" +
-                           "id INTEGER PRIMARY KEY, " +
+                           "id INTEGER PRIMARY KEY," +
                            "name VARCHAR(45)," +
                            "description VARCHAR(200)," +
                            "price FLOAT(10)," +
@@ -34,6 +35,31 @@ public class Database extends SQLiteOpenHelper{
                        ");";
 
         db.execSQL(query);
+
+
+        Log.d(" queryProduct: ", query);
+
+
+        //Create table to client´s data
+
+        String queryClient = "CREATE TABLE IF NOT EXISTS client(" +
+                "idClient INTEGER PRIMARY KEY," +
+                "Name VARCHAR(45)," +
+                "Email VARCHAR(45)," +
+                "Password VARCHAR(60)," +
+                "StreetName VARCHAR(60)," +
+                "Complement VARCHAR(120)," +
+                "Number VARCHAR(10)," +
+                "ZipCode VARCHAR(60)," +
+                "NameNeighborhood VARCHAR(50)," +
+                "NameCity VARCHAR(60)," +
+                "NameState VARCHAR(60)" +
+                ");";
+
+        db.execSQL(queryClient);
+
+        Log.d(" queryClient: ", queryClient);
+
 
     }
 

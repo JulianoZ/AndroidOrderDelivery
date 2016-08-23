@@ -55,6 +55,26 @@ public class Controller {
     public static boolean isFastRemChecked;// = false;
     public static int ClientTable = 0; //Set the number of client table
     public static int primaryKey = 0; //Key of order of Client
+    public static boolean idUser; //Key of order of Client
+
+
+    public static final String Par_Client = "client"; //Definindo uma constante para a o objeto CONTATO e para a tabela do banco CONTATO
+
+
+    //------Get Authentication data of client
+    public static boolean DataBaseCreate = false; // Controll if the database was created
+    public static boolean AuthenticationJsonData = false; // json with data of client from the server
+    public static String idClient = "";
+    public static String Name = "";
+    public static String Email = "";
+    public static String StreetName = "";
+    public static String Number = "";
+    public static String ZipCode = "";
+    public static String NameNeighborhood = "";
+    public static String NameCity = "";
+    public static String Complement = "";
+
+
 
 
 

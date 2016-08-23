@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
+
+
+
     }
 
     @Override
@@ -50,6 +55,8 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FillFragment()).commit();
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -25,4 +25,9 @@ public interface RestInterface {
         void insertUserJson(@Field("json") String json, Callback<Response> callBack);
 
 
+        @FormUrlEncoded
+        @POST("/WebServicePHP/AuthenticationClient.php")
+        void insertUserAuthentication(@Field("json") String json, Callback<Response> callBack);
+
+
 }
