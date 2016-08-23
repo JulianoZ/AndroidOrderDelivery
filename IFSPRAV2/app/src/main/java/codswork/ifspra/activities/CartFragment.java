@@ -31,6 +31,7 @@ import codswork.ifspra.Controller;
 import codswork.ifspra.R;
 import codswork.ifspra.RestInterface;
 import codswork.ifspra.adapters.OrderedProductAdapter;
+import codswork.ifspra.pojo.MessageBox;
 import codswork.ifspra.pojo.Product;
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -111,10 +112,26 @@ public class CartFragment extends Fragment implements CartInterface {
             @Override
             public void onClick(View v) {
 
+
+                if (Controller.loggedUser_in) { //Verify if user is authenticated)
+
                 if (Controller.ClientTable == 0) { //If the number of client table isn´t set call the method to set.
                     CheckoutTable(v).show();
                 }else{
                     CheckoutDirect(v).show();
+                }
+
+                } else { //Redirect to login area
+
+
+                    MessageBox.show(myView.getContext(), "Você não está logado", "Você será redirecionado para realizar a autenticação, ok?");
+
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame
+                                    , new FillFragment())
+                            .commit();
+
                 }
             }
         });
@@ -124,12 +141,27 @@ public class CartFragment extends Fragment implements CartInterface {
             @Override
             public void onClick(View v) {
 
-                if (Controller.ClientTable == 0) { //If the number of client table isn´t set call the method to set.
-                    makeOrderSetTable(v).show(); //keep the products in the cart
-                } else {
-                    makeOrderDirect(v).show();
+                if (Controller.loggedUser_in) { //Verify if user is authenticated)
+                    if (Controller.ClientTable == 0) { //If the number of client table isn´t set call the method to set.
+                        makeOrderSetTable(v).show(); //keep the products in the cart
+                    } else {
+                        makeOrderDirect(v).show();
+                    }
+
+                } else { //Redirect to login area
+
+
+                    MessageBox.show(myView.getContext(), "Você não está logado", "Você será redirecionado para realizar a autenticação, ok?");
+
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame
+                                    , new FillFragment())
+                            .commit();
+
                 }
             }
+
         });
 
 
@@ -150,7 +182,7 @@ public class CartFragment extends Fragment implements CartInterface {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 boolean checkout = true; //no checkout the odered
                                 Controller.vibrateShort(getView().getContext());
-                                send_json(npView.getValue(), checkout); //Get the client table
+                                send_json(npView.getValue(), checkout); //Get the client table | Checkout indicates if the count to close or not
                                 Controller.Carrinho.clear();
                                 updateCart();
                                 Controller.vibrateShort(getView().getContext());
@@ -178,7 +210,7 @@ public class CartFragment extends Fragment implements CartInterface {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 boolean checkout = true; //no checkout the odered
                                 Controller.vibrateShort(getView().getContext());
-                                send_json(Controller.ClientTable, checkout); //Get the client table
+                                send_json(Controller.ClientTable, checkout); //Get the client table | Checkout indicates if the count to close or not
                                 Controller.Carrinho.clear();
                                 updateCart();
                                 Controller.vibrateShort(getView().getContext());
@@ -212,7 +244,7 @@ public class CartFragment extends Fragment implements CartInterface {
                                 Controller.vibrateShort(getView().getContext());
                                 Controller.ClientTable = npView.getValue();
                                 Controller.SetPrimaryKey(); //Genarate a primaryKey
-                                send_json(npView.getValue(), checkout); //Get the client table
+                                send_json(npView.getValue(), checkout); //Get the client table | Checkout indicates if the count to close or not
                                 //Controller.Carrinho.clear();
                                 updateCart();
                                 Controller.vibrateShort(getView().getContext());
@@ -239,7 +271,7 @@ public class CartFragment extends Fragment implements CartInterface {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 boolean checkout = false; //no checkout the odered
                                 Controller.vibrateShort(getView().getContext());
-                                send_json(Controller.ClientTable, checkout); //Get the client table
+                                send_json(Controller.ClientTable, checkout); //Get the client table | Checkout indicates if the count to close or not
                                 updateCart();
                                 Controller.vibrateShort(getView().getContext());
                                 Toast.makeText(v.getContext(), "Pedido realizado com sucesso!", Toast.LENGTH_SHORT).show();
@@ -315,7 +347,12 @@ public class CartFragment extends Fragment implements CartInterface {
             cart.put("GeneralQuantity", Controller.Carrinho.getQuantity());
             cart.put("Finalized", Controller.Carrinho.isStatusFinalized());
             cart.put("ClientId", 4); //Cod Client Test
-            cart.put("StatusOrdered", 0); //Delivery, Produce, Delivery...
+
+            if (checkout) { //If the count is close, send to the server this information
+                cart.put("StatusOrdered", 1); //Delivery, Produce, Delivery...
+            }else{
+                cart.put("StatusOrdered", 0); //Delivery, Produce, Delivery...
+            }
             cart.put("StatusOrderedLocal", 1); //Inside or Outside of store
             cart.put("Note", ""); //Note about the ordered
             cart.put("ZipCodeDelivery", 1); //ZipCode Sample to delivery

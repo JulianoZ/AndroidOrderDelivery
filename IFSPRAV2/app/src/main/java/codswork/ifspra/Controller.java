@@ -73,6 +73,7 @@ public class Controller {
     public static String NameNeighborhood = "";
     public static String NameCity = "";
     public static String Complement = "";
+    public static boolean loggedUser_in = false;
 
 
 

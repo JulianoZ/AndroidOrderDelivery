@@ -105,9 +105,11 @@ public class FillFragment extends Fragment{
 
                 if (!(client.getName().equals(""))) {
 
-                    //Case the user is authentication, get the data from database and assign to global parameter in controller
+                    //Case the user is authenticated, get the data from database and assign to global parameter in controller
                     Controller.Name = client.getName();
                     Controller.Email = client.getEmail();
+                    Controller.loggedUser_in = true; //set true case it is loggin
+
                     //...
 
                     ((TextView) getActivity().findViewById(R.id.textViewEmail)).setText("Bem vindo: " + client.getName() + " \n");
@@ -204,14 +206,18 @@ public class FillFragment extends Fragment{
                 objDClient.DeleteClientData(client.getIdClient()); //Delete data in database and global variable in controller
 
 
+                Controller.loggedUser_in = false; //Verify if user is authenticated
+
 
                 String PassMD5 = MD5(Password); //cryptography md5 password
 
 
                 //Send the user to web system direct in http://localhost:53407/Home/Checkout to login mode
-                Uri uri = Uri.parse("http://julianoblanco-001-site3.ctempurl.com/Checkout?Email="+Email+"&Pass="+PassMD5);
+                Uri uri = Uri.parse("http://julianoblanco-001-site3.ctempurl.com/Homne/Checkout?Email="+Email+"&Pass="+PassMD5);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
+
+
 
 
                 //Close the app
@@ -247,6 +253,8 @@ public class FillFragment extends Fragment{
 
                 Log.d("id Delete ", client.getName() + " " + String.valueOf(client.getIdClient()));
                 objDClient.DeleteClientData(client.getIdClient()); //Delete data in database and global variable in controller
+
+                Controller.loggedUser_in = false; //Verify if user is authenticated
 
 
                 //Manager View elements. Hide the field Text
@@ -372,6 +380,7 @@ public class FillFragment extends Fragment{
             int idClient = Integer.valueOf(jsonObj.getString("idClient"));
 
             Controller.AuthenticationJsonData = true; //Get data of client
+            Controller.loggedUser_in = true; //Verify if user is authenticated
             Controller.Name = Name;
             Controller.Number = Number;
             Controller.ZipCode = ZipCode;
