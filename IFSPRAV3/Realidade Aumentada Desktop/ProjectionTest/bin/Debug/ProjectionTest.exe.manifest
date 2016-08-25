@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjectionTest.exe" size="83376">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjectionTest.exe" size="83456">
       <assemblyIdentity name="ProjectionTest" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SPlHlxE6pC3/7F5dGJZ5JD6EaQr3hayAalCwiD+gu+E=</dsig:DigestValue>
+        <dsig:DigestValue>y29iqo9R61fgJ7YcS2y3Mt0jIJDEw5pg9Uj32/Ta+IA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -245,13 +245,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ProjectionTest.exe.config" size="187">
+  <file name="ProjectionTest.exe.config" size="182">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+      <dsig:DigestValue>PbQiHFOih9uz3RPvvsStiPKcsu3PE8/gyCn2QGUyyf4=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -15,8 +15,9 @@ namespace ProjectionTest {
         public static bool InUse = false;
 
         public static void start() {
+            //Usar esse para um servidor Wifi de verdade
             ipAd = IPAddress.Parse(TCPServer.GetLocalIPAddress());
-            //ipAd = IPAddress.Parse("10.0.0.170");
+            //ipAd = IPAddress.Any;
             //var ip = new WebClient().DownloadString("http://icanhazip.com");
             //ipAd = IPAddress.Parse(ip.Substring(0,ip.Length-1));
             server = new TcpListener(ipAd, 1209);

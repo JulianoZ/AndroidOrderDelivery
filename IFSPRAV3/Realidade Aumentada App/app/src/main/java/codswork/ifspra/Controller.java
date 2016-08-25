@@ -63,9 +63,9 @@ public class Controller {
 
 
     //------Get Authentication data of client
-    public static boolean DataBaseCreate = false; // Controll if the database was created
-    public static boolean AuthenticationJsonData = false; // json with data of client from the server
-    public static String idClient = "";
+    public static boolean DataBaseCreate; // Controll if the database was created
+    public static boolean AuthenticationJsonData; // json with data of client from the server
+    public static int idClient;
     public static String Name = "";
     public static String Email = "";
     public static String StreetName = "";
@@ -74,7 +74,7 @@ public class Controller {
     public static String NameNeighborhood = "";
     public static String NameCity = "";
     public static String Complement = "";
-    public static boolean loggedUser_in = false;
+    public static boolean loggedUser_in;
 
 
 
@@ -133,6 +133,11 @@ public class Controller {
         editor.putInt("OrderedIdCount", Ordered.id_count);
         editor.putBoolean("isFastBuyChecked", isFastBuyChecked);
         editor.putBoolean("isFastRemChecked", isFastRemChecked);
+        editor.putBoolean("DataBaseCreate", DataBaseCreate);
+        editor.putBoolean("loggedUser_in", loggedUser_in);
+        editor.putBoolean("AuthenticationJsonData", AuthenticationJsonData);
+        editor.putString("Name", Name);
+        editor.putString("Email", Email);
         editor.commit();
     }
 
@@ -141,6 +146,11 @@ public class Controller {
 
         isFastRemChecked = settings.getBoolean("isFastRemChecked", false);
         isFastBuyChecked = settings.getBoolean("isFastBuyChecked", false);
+        DataBaseCreate = settings.getBoolean("DataBaseCreate", false);
+        loggedUser_in = settings.getBoolean("loggedUser_in", false);
+        AuthenticationJsonData = settings.getBoolean("AuthenticationJsonData", false);
+        Name = settings.getString("Name", "");
+        Name = settings.getString("Email", "");
 
         return settings.getInt("OrderedIdCount", 0);
     }

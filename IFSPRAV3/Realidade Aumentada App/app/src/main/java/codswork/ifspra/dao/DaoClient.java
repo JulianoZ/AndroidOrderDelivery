@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import codswork.ifspra.Controller;
+import codswork.ifspra.database.Database;
 import codswork.ifspra.pojo.Client;
 
 /**
@@ -28,9 +29,37 @@ public class DaoClient {
 
 
 
+public DaoClient(){
+
+}
 
 
-
+    public boolean createClient(Context c, Client client){
+        Database db = Database.getInstance(c.getApplicationContext());
+        String query = "INSERT INTO client(idClient, Name, Email, " +
+                "Password, StreetName, Complement, " +
+                "Number, ZipCode, NameNeighborhood, " +
+                "NameCity, NameState) VALUES('" +
+                + client.getIdClient() + "',' "
+                + client.getName()+ "',' "
+                + client.getEmail() + "',' "
+                + client.getPassword() + "',' "
+                + client.getStreetName() + "',' "
+                + client.getComplement() + "',' "
+                + client.getNumber() + "',' "
+                + client.getZipCode() + "',' "
+                + client.getNameNeighborhood() + "',' "
+                + client.getNameCity() + "',' "
+                + client.getNameCity()
+                + "')";
+        //Log.d("DB-Get", query);
+        try{
+            db.getWritableDatabase().execSQL(query); db.close(); return true;
+        }catch(Exception e){
+            Log.d(" Erro na inserção SQL: ", e.getLocalizedMessage() + e.getStackTrace() + e.getMessage()+ e.getCause());
+            return false;
+        }
+    }
 
 
 
@@ -49,7 +78,7 @@ public class DaoClient {
         }catch (Exception e){
 
             //MessageBox.show(context, "Erro", "Erro ao salvar os dados: " + e.getMessage());
-            Log.d(" Erro na inserção: ", e.getLocalizedMessage() + e.getStackTrace());
+            Log.d(" Erro na inserção: ", e.getLocalizedMessage() + e.getStackTrace() + e.getMessage()+ e.getCause());
 
         }
     }
@@ -64,7 +93,7 @@ public class DaoClient {
         conn.delete(Controller.Par_Client, "idClient = ?", new String[]{String.valueOf(id)});
 
         Controller.AuthenticationJsonData = false; //Get data of client
-        Controller.idClient = "";
+        Controller.idClient = 0;
         Controller.Name = "";
         Controller.Number = "";
         Controller.ZipCode = "";
@@ -142,6 +171,35 @@ try {
     }
 
 
+
+
+
+
+
+
+
+    public static int getClientId(Context context, int id){
+        int IdC=0;
+        Database db = Database.getInstance(context.getApplicationContext());
+        String query = "SELECT * FROM client WHERE idClient=" + id;
+        //Log.d("DB-Get", query);
+        Cursor c = db.getWritableDatabase().rawQuery(query,null);
+        //Client p = new Client();
+        if(c!=null && c.moveToFirst()){
+
+            //p.setIdClient(Database.getDataInt("idClient", c));
+            IdC = Database.getDataInt("idClient", c);
+
+            c.close();
+            db.close();
+        }else{
+            //p.setIdClient(0);
+            IdC = 0;
+        }
+
+
+        return IdC; //Whether IdC worth zero the idClient id don't exists in database
+    }
 
 
 

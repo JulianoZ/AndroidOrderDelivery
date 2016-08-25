@@ -2,16 +2,13 @@ package codswork.ifspra.activities;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,22 +18,17 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import codswork.ifspra.Controller;
 import codswork.ifspra.R;
 import codswork.ifspra.TCPClient;
-import codswork.ifspra.adapters.RaProductAdapter;
 import codswork.ifspra.pojo.Product;
+
+//import codswork.ifspra.adapters.RaProductAdapter;
 
 
 public class RaFragment extends Fragment {
@@ -68,7 +60,7 @@ public class RaFragment extends Fragment {
         getActivity().setTitle("Realidade Aumentada");
         prepareLayout();
 
-        new Thread(new Runnable(){
+        final Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
                 if(TCPClient.send_recv("handshake").equals("hi")){
@@ -90,14 +82,14 @@ public class RaFragment extends Fragment {
                             ((TextView) getActivity().findViewById(R.id.tv_status)).setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    run();
                                 }
                             });
                         }
                     });
                 }
             }
-        }).start();
+        });
+        thread.start();
 
     }
 

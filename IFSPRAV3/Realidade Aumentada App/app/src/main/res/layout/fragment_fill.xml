@@ -71,74 +71,74 @@
 
 
 
-        <LinearLayout
-            android:orientation="horizontal"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="15dp">
+
+
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:padding="15dp">
+            android:text="Acessar"
+            android:id="@+id/BtnAutentica"
+            android:background="@drawable/round_button_green"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
 
-
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Acessar"
-                android:id="@+id/BtnAutentica"
-                android:background="@drawable/round_button_green"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cadastre-se"
-                android:id="@+id/BtnRegister"
-                android:background="@drawable/round_button_green"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal" />
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:padding="15dp">
+            android:text="Cadastre-se"
+            android:id="@+id/BtnRegister"
+            android:background="@drawable/round_button_green"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Atualizar Dados"
-                android:id="@+id/BtnUpdateUser"
-                android:background="@drawable/round_button_green"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp" />
+    </LinearLayout>
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Finalizar Seção"
-                android:id="@+id/BtnSessionFinish"
-                android:background="@drawable/round_button_green"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp" />
 
-        </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="15dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Atualizar Dados"
+            android:id="@+id/BtnUpdateUser"
+            android:background="@drawable/round_button_green"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finalizar Seção"
+            android:id="@+id/BtnSessionFinish"
+            android:background="@drawable/round_button_green"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp" />
+
+    </LinearLayout>
 
     </LinearLayout>
     <!--

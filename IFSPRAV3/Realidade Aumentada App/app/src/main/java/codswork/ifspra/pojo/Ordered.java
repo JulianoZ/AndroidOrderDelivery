@@ -41,8 +41,8 @@ public class Ordered {
         this.id = id;
     }
 
-    // public HashMap<Product, Integer> getProducts() {
-    public LinkedHashMap<Product, Integer> getProducts() {
+   // public HashMap<Product, Integer> getProducts() {
+   public LinkedHashMap<Product, Integer> getProducts() {
         return Products;
     }
 
@@ -80,8 +80,8 @@ public class Ordered {
             //----------extended Code
             if (p.product_purchased) {//Verify if this product already was ordered. Case positive
 
-                //Create new object to stored two register with same data. The difference is in purchased or not
-                Product objP = new Product();
+                   //Create new object to stored two register with same data. The difference is in purchased or not
+                 Product objP = new Product();
                 objP.idProduct = p.idProduct;
                 objP.Name = p.Name;
                 objP.setImg(p.getImg());
@@ -89,7 +89,7 @@ public class Ordered {
                 objP.Price = p.Price;
 
 
-                Products.put(objP, quantity); //Add new hashMap Tuple with product_puchased variable set false
+                    Products.put(objP, quantity); //Add new hashMap Tuple with product_puchased variable set false
 
                 Log.d(" Produto comprado ", Integer.toString(p.idProduct) + Boolean.toString(p.product_purchased) + Controller.RandonGenerate());
 

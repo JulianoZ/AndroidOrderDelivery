@@ -21,18 +21,18 @@ public class Database extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         String query = "CREATE TABLE IF NOT EXISTS product(" +
-                "id INTEGER PRIMARY KEY," +
-                "name VARCHAR(45)," +
-                "description VARCHAR(200)," +
-                "price FLOAT(10)," +
-                "short_description VARCHAR(50)," +
-                "stock INT(10)," +
-                "featured INT(1)," +
-                "weight FLOAT(10)," +
-                "picture VARCHAR(60)," +
-                "picture2 VARCHAR(60)," +
-                "subcat_id INT(5)" +
-                ");";
+                           "id INTEGER PRIMARY KEY," +
+                           "name VARCHAR(45)," +
+                           "description VARCHAR(200)," +
+                           "price FLOAT(10)," +
+                           "short_description VARCHAR(50)," +
+                           "stock INT(10)," +
+                           "featured INT(1)," +
+                           "weight FLOAT(10)," +
+                           "picture VARCHAR(60)," +
+                           "picture2 VARCHAR(60)," +
+                           "subcat_id INT(5)" +
+                       ");";
 
         db.execSQL(query);
 
@@ -46,7 +46,7 @@ public class Database extends SQLiteOpenHelper{
                 "idClient INTEGER PRIMARY KEY," +
                 "Name VARCHAR(45)," +
                 "Email VARCHAR(45)," +
-                "Password VARCHAR(60)," +
+                "Password VARCHAR(200)," +
                 "StreetName VARCHAR(60)," +
                 "Complement VARCHAR(120)," +
                 "Number VARCHAR(10)," +

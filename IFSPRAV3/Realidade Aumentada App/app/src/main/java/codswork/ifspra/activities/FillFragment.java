@@ -86,12 +86,15 @@ public class FillFragment extends Fragment{
 
 
         //------------------Query if already there is a register of client
-        Log.d("DatabaseCreated: ", String.valueOf(Controller.DataBaseCreate));
+        Log.d("Name Fill", String.valueOf(Controller.Name));
+        Log.d("DatabaseCreated ", String.valueOf(Controller.DataBaseCreate));
+        Log.d("loggin_user ", String.valueOf(Controller.loggedUser_in));
+
 
         if(Controller.DataBaseCreate) {//if the database client as created, get the client data
             try {
 
-
+                /* //Make verification with database. Whether there are any register in database use this one
                 SQLiteDatabase conn;
                 Database dataBase;
 
@@ -103,16 +106,15 @@ public class FillFragment extends Fragment{
                 final Client client = objDClient.GetClient(getActivity().getApplicationContext());
 
 
-                if (!(client.getName().equals(""))) {
+                if (!(client.getName().equals(null))) {
+                */
+
+                    if(Controller.loggedUser_in){
 
                     //Case the user is authenticated, get the data from database and assign to global parameter in controller
-                    Controller.Name = client.getName();
-                    Controller.Email = client.getEmail();
-                    Controller.loggedUser_in = true; //set true case it is loggin
 
-                    //...
 
-                    ((TextView) getActivity().findViewById(R.id.textViewEmail)).setText("Bem vindo: " + client.getName() + " \n");
+                    ((TextView) getActivity().findViewById(R.id.textViewEmail)).setText("Bem vindo: " + Controller.Name + " \n");
                     ((TextView) getActivity().findViewById(R.id.textViewEmail)).setTextSize(20);
 
 
@@ -206,14 +208,20 @@ public class FillFragment extends Fragment{
                 objDClient.DeleteClientData(client.getIdClient()); //Delete data in database and global variable in controller
 
 
+                Controller.AuthenticationJsonData = false; //Get data of client
                 Controller.loggedUser_in = false; //Verify if user is authenticated
+                Controller.DataBaseCreate  = false;
+                Controller.Name = "";
+
+
+                Controller.saveCount(getActivity()); //Stored data client in Android app to next access
 
 
                 String PassMD5 = MD5(Password); //cryptography md5 password
 
 
                 //Send the user to web system direct in http://localhost:53407/Home/Checkout to login mode
-                Uri uri = Uri.parse("http://julianoblanco-001-site3.ctempurl.com/Homne/Checkout?Email="+Email+"&Pass="+PassMD5);
+                Uri uri = Uri.parse("http://julianoblanco-001-site3.ctempurl.com/Home/Checkout?Email="+Email+"&Pass="+PassMD5);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
 
@@ -254,7 +262,16 @@ public class FillFragment extends Fragment{
                 Log.d("id Delete ", client.getName() + " " + String.valueOf(client.getIdClient()));
                 objDClient.DeleteClientData(client.getIdClient()); //Delete data in database and global variable in controller
 
+
+                Controller.AuthenticationJsonData = false; //Get data of client
                 Controller.loggedUser_in = false; //Verify if user is authenticated
+                Controller.DataBaseCreate  = false;
+                Controller.Name = "";
+
+
+                Controller.saveCount(getActivity()); //Stored data client in Android app to next access
+
+
 
 
                 //Manager View elements. Hide the field Text
@@ -314,11 +331,11 @@ public class FillFragment extends Fragment{
                             output = reader.readLine();
                             Log.d("JSON TryOut: ", output);
 
-                            if (!(output.equals("false"))) {
-                                ParseJson(output); //Parse json from the server and salve in global variable
-                            }else{
-                                MessageBox.show(myView.getContext(), "Login inválido", "Seu usuário e senha estão inválidos. \n Por favor, tente novamente! ");
-                            }
+                           if (!(output.equals("false"))) {
+                               ParseJson(output); //Parse json from the server and salve in global variable
+                           }else{
+                               MessageBox.show(myView.getContext(), "Login inválido", "Seu usuário e senha estão inválidos. \n Por favor, tente novamente! ");
+                           }
 
 
                         }catch (IOException e) {
@@ -381,18 +398,27 @@ public class FillFragment extends Fragment{
 
             Controller.AuthenticationJsonData = true; //Get data of client
             Controller.loggedUser_in = true; //Verify if user is authenticated
+            Controller.DataBaseCreate  = true;
             Controller.Name = Name;
+            Controller.Email = Email;
+
+
+            Controller.saveCount(getActivity()); //Stored data client in Android app to next access
+
+
             Controller.Number = Number;
             Controller.ZipCode = ZipCode;
             Controller.NameNeighborhood = NameNeighborhood;
             Controller.NameCity = NameCity;
             Controller.Complement = Complement;
             Controller.StreetName = StreetName;
-            Controller.idClient = String.valueOf(idClient);
+            Controller.idClient = idClient;
+
 
 
 //--------------------------------------------------------------------------Stored data in SQLIte
             //Create the client object
+
             Client objCli = new Client();
             objCli.setName(Name);
             objCli.setEmail(Email);
@@ -407,6 +433,29 @@ public class FillFragment extends Fragment{
             objCli.setIdClient(idClient);
 
 
+
+/*
+            Client objCli = new Client();
+            objCli.setName("ss");
+            objCli.setEmail("juliano_z@yahoo.com.br");
+            objCli.setPassword("123");
+            objCli.setStreetName("ss");
+            objCli.setNumber("ss");
+            objCli.setComplement("ss");
+            objCli.setZipCode("ss");
+            objCli.setNameNeighborhood("ss");
+            objCli.setNameCity("ss");
+            objCli.setStreetName("SP");
+            objCli.setIdClient(5);
+            */
+
+
+
+
+
+
+
+
             SQLiteDatabase conn;
             Database dataBase;
 
@@ -414,10 +463,31 @@ public class FillFragment extends Fragment{
             conn = dataBase.getWritableDatabase(); //Criar e abrir a base de dados
 
             DaoClient objDCli = new DaoClient(conn);
-            objDCli.InserirObjCli(objCli);
+
+            //Verify if there is a recorder in the database before insert
+            int idC = objDCli.getClientId(getActivity(),idClient);
+
+
+    if (idC == 0) { //Case there is a id it don't stored again
+        objDCli.InserirObjCli(objCli);
+    }
+
+
+
+
+
+
+
+            /* Stored data using method with sql
+            DaoClient Dcli = new DaoClient();
+            boolean x = Dcli.createClient(getActivity().getApplicationContext(), objCli);
+            Log.d("Create client: ", String.valueOf(x));
+            */
+
+
 //--------------------------------------------------------------------------Stored data in SQLIte
 
-            //Log.d(" IdClient: ", id);
+            Log.d(" IdClient: ", String.valueOf(idClient));
             Log.d(" StreetName: ", StreetName);
             Log.d(" Name: ", Name);
 

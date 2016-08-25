@@ -19,7 +19,7 @@
         android:paddingTop="50dp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Carregando..."
@@ -28,7 +28,5 @@
         android:layout_centerHorizontal="true"
         android:textColor="#fff"
         android:textStyle="bold"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:layout_margin="10dp" />
+        android:textSize="40dp" />
 </RelativeLayout>

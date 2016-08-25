@@ -232,3 +232,36 @@ G:\SistemaRADesktop\ProjectionTest\ProjectionTest\obj\Debug\ProjectionTest.Prope
 G:\SistemaRADesktop\ProjectionTest\ProjectionTest\obj\Debug\ProjectionTest.csproj.GenerateResource.Cache
 G:\SistemaRADesktop\ProjectionTest\ProjectionTest\obj\Debug\ProjectionTest.exe.manifest
 G:\SistemaRADesktop\ProjectionTest\ProjectionTest\obj\Debug\ProjectionTest.application
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\ProjectionTest.exe.config
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.exe
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.pdb
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\ProjectionTest.exe.manifest
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\ProjectionTest.application
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\ProjectionTest.exe
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\ProjectionTest.pdb
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\Xceed.Wpf.AvalonDock.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\Xceed.Wpf.DataGrid.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\Xceed.Wpf.Toolkit.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.csprojResolveAssemblyReference.cache
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\MainWindow.baml
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\MainWindow.g.cs
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\App.g.cs
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest_MarkupCompile.cache
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.g.resources
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.Properties.Resources.resources
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.csproj.GenerateResource.Cache
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.exe.manifest
+D:\OneDrive\Doutorado\ProjetosTecnicos\ProjetoC#VS\AppMunhoz\IFSPRAV3\Realidade Aumentada Desktop\ProjectionTest\obj\Debug\ProjectionTest.application

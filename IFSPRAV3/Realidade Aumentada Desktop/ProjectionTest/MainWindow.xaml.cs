@@ -106,7 +106,7 @@ namespace ProjectionTest {
             InitializeComponent();
 
             //if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) {
-            ServerInfoLabel.Content = "Conectado";//TCPServer.GetLocalIPAddress(); //new WebClient().DownloadString("http://icanhazip.com");
+            ServerInfoLabel.Content = TCPServer.GetLocalIPAddress(); //new WebClient().DownloadString("http://icanhazip.com");
             new Thread(thread).Start();
             //} else { ServerInfoLabel.Content = "Não há conexão com a internet"; }
 

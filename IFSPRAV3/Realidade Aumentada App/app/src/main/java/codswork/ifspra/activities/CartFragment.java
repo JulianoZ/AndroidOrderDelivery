@@ -115,11 +115,11 @@ public class CartFragment extends Fragment implements CartInterface {
 
                 if (Controller.loggedUser_in) { //Verify if user is authenticated)
 
-                    if (Controller.ClientTable == 0) { //If the number of client table isn´t set call the method to set.
-                        CheckoutTable(v).show();
-                    }else{
-                        CheckoutDirect(v).show();
-                    }
+                if (Controller.ClientTable == 0) { //If the number of client table isn´t set call the method to set.
+                    CheckoutTable(v).show();
+                }else{
+                    CheckoutDirect(v).show();
+                }
 
                 } else { //Redirect to login area
 
@@ -368,7 +368,7 @@ public class CartFragment extends Fragment implements CartInterface {
             for (Product prod:Controller.Carrinho.getProducts().keySet()){
                 JSONObject p = new JSONObject();
 
-                boolean ProductDelivered = false;
+                 boolean ProductDelivered = false;
                 if (!prod.product_purchased) { //if the product hasn´t yet been purchased
                     p.put("quantity", Controller.Carrinho.getProducts().get(prod));
                     p.put("product_id", prod.getIdProduct());

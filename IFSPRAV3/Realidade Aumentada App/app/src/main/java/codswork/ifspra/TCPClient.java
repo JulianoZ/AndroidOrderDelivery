@@ -3,9 +3,12 @@ package codswork.ifspra;
 /**
  * Created by Felipe on 17/08/2016.
  */
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,11 +20,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-
 public class TCPClient {
 
     //public static String ipAddress = "0.0.0.0";
@@ -29,12 +27,15 @@ public class TCPClient {
 
     private static boolean Connect(){
         try {
-            InetAddress ipAd = InetAddress.getByName(getPublicIpAddress());
+            // Usar esse para quando utilizar um Wifi de verdade
+            //InetAddress ipAd = InetAddress.getByName(getPublicIpAddress());
+            InetAddress ipAd = InetAddress.getByName("10.9.2.141");
             socket = new Socket(ipAd, 1209);
             Log.d("TCP","Conexão bem sucedida");
             return true;
         }catch (UnknownHostException e) {
-            Log.e("TCP", "Erro", e);
+            Log.e("TCP", "Erro" + e.getMessage());
+            e.printStackTrace();
             return false;
         } catch (IOException e) {
             Log.e("TCP", "IOException", e);
@@ -122,7 +123,8 @@ public class TCPClient {
 
             //connect
             Log.d("TCP", "Conectando");
-            InetAddress ipAd = InetAddress.getByName(getPublicIpAddress());
+            //InetAddress ipAd = InetAddress.getByName(getPublicIpAddress());
+            InetAddress ipAd = InetAddress.getByName("192.168.43.12");
             Socket socket = new Socket(ipAd, 1209);
             //send
             DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
@@ -145,7 +147,8 @@ public class TCPClient {
         try {
             //connect
             Log.d("TCP", "Conectando");
-            InetAddress ipAd = InetAddress.getByName(getPublicIpAddress());
+            //InetAddress ipAd = InetAddress.getByName(getPublicIpAddress());
+            InetAddress ipAd = InetAddress.getByName("192.168.43.12");
             socket = new Socket(ipAd, 1209);
             //send
             DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
